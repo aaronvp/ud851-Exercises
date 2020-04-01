@@ -21,26 +21,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.example.android.datafrominternet.utilities.NetworkUtils;
 
+import java.io.IOException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText mSearchBoxEditText;
-
     private TextView mUrlDisplayTextView;
-
     private TextView mSearchResultsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mSearchBoxEditText = (EditText) findViewById(R.id.et_search_box);
-
         mUrlDisplayTextView = (TextView) findViewById(R.id.tv_url_display);
         mSearchResultsTextView = (TextView) findViewById(R.id.tv_github_search_results_json);
     }
@@ -55,8 +51,15 @@ public class MainActivity extends AppCompatActivity {
         String githubQuery = mSearchBoxEditText.getText().toString();
         URL githubSearchUrl = NetworkUtils.buildUrl(githubQuery);
         mUrlDisplayTextView.setText(githubSearchUrl.toString());
-        // TODO (2) Call getResponseFromHttpUrl and display the results in mSearchResultsTextView
-        // TODO (3) Surround the call to getResponseFromHttpUrl with a try / catch block to catch an IOException
+        // TODOx (2) Call getResponseFromHttpUrl and display the results in mSearchResultsTextView
+        // TODOx (3) Surround the call to getResponseFromHttpUrl with a try / catch block to catch an IOException
+        String gitHubSearchResults = null;
+        try {
+            gitHubSearchResults = NetworkUtils.getResponseFromHttpUrl(githubSearchUrl);
+            mSearchResultsTextView.setText(gitHubSearchResults);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
     }
 
     @Override

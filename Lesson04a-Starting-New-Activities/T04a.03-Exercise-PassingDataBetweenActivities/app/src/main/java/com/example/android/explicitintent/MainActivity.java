@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText mNameEntry;
     private Button mDoSomethingCoolButton;
 
+    public static final String SEND_TEXT = "textToSend";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View v) {
-                // TODO (1) Retrieve the text from the EditText and store it in a variable
+                // TODOx (1) Retrieve the text from the EditText and store it in a variable
+                String textToSend = mNameEntry.getText().toString();
 
                 /*
                  * Storing the Context in a variable in this case is redundant since we could have
@@ -73,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
                  */
                 Intent startChildActivityIntent = new Intent(context, destinationActivity);
 
-                // TODO (2) Use the putExtra method to put the String from the EditText in the Intent
-
+                // TODOx (2) Use the putExtra method to put the String from the EditText in the Intent
+                startChildActivityIntent.putExtra(SEND_TEXT, textToSend);
                 /*
                  * Once the Intent has been created, we can use Activity's method, "startActivity"
                  * to start the ChildActivity.

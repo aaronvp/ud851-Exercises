@@ -15,10 +15,10 @@
      limitations under the License.
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" xmlns:style="http://schemas.android.com/apk/res-auto"
+             android:padding="16dp">
 
     <TextView
         android:id="@+id/tv_item_number"
@@ -31,6 +31,12 @@
         tools:text="#42" />
 
     <!--TODO (1) Add a TextView with id "@+id/tv_view_holder_instance-->
+    <TextView
+        android:id="@+id/tv_view_holder_instance"
+        style:"@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
     <!--TODO (2) Set the style to @style/TextAppearance.AppCompat.Title-->
     <!--TODO (3) Set the width and the height to wrap_content-->
     <!--TODO (4) Align the TextView to the end of the parent-->

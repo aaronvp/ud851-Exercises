@@ -3,8 +3,12 @@ package com.example.android.lifecycle;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private TextView mLifecycleDisplay;
 
-    // TODO (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
+    // TODOx (1) Declare and instantiate a static ArrayList of Strings called mLifecycleCallbacks
+    ArrayList<String> mLifeCycleCallBacks = new ArrayList<>();
 
     /**
      * Called when the activity is first created. This is where you should do all of your normal
@@ -71,9 +76,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // TODO (4) Iterate backwards through mLifecycleCallbacks, appending each String and a newline to mLifecycleDisplay
+        Log.i("Storing Arr", ON_CREATE + " Size = " + mLifeCycleCallBacks.size());
 
-        // TODO (5) Clear mLifecycleCallbacks after iterating through it
+        // TODOx (4) Iterate backwards through mLifecycleCallbacks, appending each String and a newline to mLifecycleDisplay
+        for (int i = mLifeCycleCallBacks.size() - 1; i >= 0; i--) {
+            mLifecycleDisplay.append(mLifeCycleCallBacks.get(i-1) + "\n");
+        }
+
+        // TODOx (5) Clear mLifecycleCallbacks after iterating through it
+        mLifeCycleCallBacks.clear();
 
         logAndAppend(ON_CREATE);
     }
@@ -89,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         logAndAppend(ON_START);
+        Toast.makeText(this.getApplicationContext(),ON_START, Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -133,8 +145,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        // TODO (2) Add the ON_STOP String to the front of mLifecycleCallbacks
+        // TODOx (2) Add the ON_STOP String to the front of mLifecycleCallbacks
+        Toast.makeText(this.getApplicationContext(),ON_STOP, Toast.LENGTH_SHORT).show();
+        mLifeCycleCallBacks.add(ON_STOP);
 
+        Log.i("Storing Arr", ON_STOP + " Size = " + mLifeCycleCallBacks.size());
         logAndAppend(ON_STOP);
     }
 
@@ -160,7 +175,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
 
-        // TODO (3) Add the ON_DESTROY String to the front of mLifecycleCallbacks
+        // TODOx (3) Add the ON_DESTROY String to the front of mLifecycleCallbacks
+        mLifeCycleCallBacks.add(ON_DESTROY);
+        Log.i("Storing Arr", ON_DESTROY + " Size = " + mLifeCycleCallBacks.size());
 
         logAndAppend(ON_DESTROY);
     }

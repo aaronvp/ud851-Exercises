@@ -50,12 +50,13 @@ public class MainActivity extends AppCompatActivity {
     public void onClickOpenAddressButton(View v) {
         // COMPLETED (5) Store an address in a String
         String addressString = "1600 Amphitheatre Parkway, CA";
+        String addressString2 = "3 Rasdashan Street, Shallcross";
 
         // COMPLETED (6) Use Uri.Builder with the appropriate scheme and query to form the Uri for the address
         Uri.Builder builder = new Uri.Builder();
         builder.scheme("geo")
                 .path("0,0")
-                .appendQueryParameter("q", addressString);
+                .appendQueryParameter("q", addressString2);
         Uri addressUri = builder.build();
 
         // COMPLETED (7) Replace the Toast with a call to showMap, passing in the Uri from the previous step
